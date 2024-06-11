@@ -52,6 +52,10 @@ For training all the submodels with transfer-learning by loading the well traine
 python run.py --graph_size 50 --is_load --load_path "model-0.pt" --CUDA_VISIBLE_ID "0" --is_transfer --is_test --update_step_test 10
 ```
 
+## VRPTW
+
+The code for VRPTW:  https://github.com/wuzhy66/ML-DAM-VRPTW
+
 ## Acknowledgements
 
 Thanks to [wouterkool/attention-learn-to-route](https://github.com/wouterkool/attention-learn-to-route) for getting me started with the code for the Attention Model.
