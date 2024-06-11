@@ -2,8 +2,7 @@ import torch
 from typing import NamedTuple
 from utils.boolmask import mask_long2bool, mask_long_scatter
 
-
-class StateTSP(NamedTuple):
+class StateTSPBase(NamedTuple):
     # Fixed input
     loc: torch.Tensor
     dist: torch.Tensor
@@ -20,6 +19,7 @@ class StateTSP(NamedTuple):
     cur_coord: torch.Tensor
     i: torch.Tensor  # Keeps track of step
 
+class StateTSP(StateTSPBase):
     @property
     def visited(self):
         if self.visited_.dtype == torch.bool:

@@ -15,17 +15,18 @@ def set_decode_type(model, decode_type):
         model = model.module
     model.set_decode_type(decode_type)
 
-
-class AttentionModelFixed(NamedTuple):
-    """
-    Context for AttentionModel decoder that is fixed during decoding so can be precomputed/cached
-    This class allows for efficient indexing of multiple Tensors at once
-    """
+class AttentionModelFixedBase(NamedTuple):
     node_embeddings: torch.Tensor
     context_node_projected: torch.Tensor
     glimpse_key: torch.Tensor
     glimpse_val: torch.Tensor
     logit_key: torch.Tensor
+
+class AttentionModelFixed(AttentionModelFixedBase):
+    """
+    Context for AttentionModel decoder that is fixed during decoding so can be precomputed/cached
+    This class allows for efficient indexing of multiple Tensors at once
+    """
 
     def __getitem__(self, key):
         if torch.is_tensor(key) or isinstance(key, slice):
